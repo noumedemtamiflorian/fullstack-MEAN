@@ -2,6 +2,12 @@
 // Importation des modules HTTP et App
 const http = require('http');
 const app = require('./app');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config()
+
+
+const DATABASE_URI = process.env.DATABASE_URI
 
 // Fonction pour normaliser le port
 const normalizePort = val => {
@@ -66,6 +72,14 @@ server.on('listening', () => {
     // Affiche le message de lancement
     console.log('Listening on ' + bind);
 });
+
+mongoose.connect(DATABASE_URI,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log('Connexion à MongoDB réussie !'))
+    .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // Lancement du serveur
 server.listen(port);
