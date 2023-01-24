@@ -1,6 +1,14 @@
 const express = require('express');
 
-const app = express();
+// Configuration du header Access-Control-Allow-Origin et Access-Control-Allow-Headers, Access-Control-Allow-Methods sur le serveur ExpressJS
+app.use((req, res, next) => {
+    // Autorise l'accès à la ressource demandée par le client
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+});
+
 app.use('/api/stuff', (req, res, next) => {
     const stuff = [
         {
