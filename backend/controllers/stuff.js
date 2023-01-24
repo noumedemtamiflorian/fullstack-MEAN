@@ -1,5 +1,7 @@
+// Importer le model Thing depuis le fichier '../models/thing'
 const Thing = require('../models/thing');
 
+// Créer une nouvelle Thing à partir des données fournies dans la requête et l'enregistrer dans la base de données
 exports.createThing = (req, res, next) => {
     const thing = new Thing({
         title: req.body.title,
@@ -23,6 +25,7 @@ exports.createThing = (req, res, next) => {
     );
 };
 
+// Récupérer une Thing à partir de son identifiant
 exports.getOneThing = (req, res, next) => {
     Thing.findOne({
         _id: req.params.id
@@ -39,6 +42,7 @@ exports.getOneThing = (req, res, next) => {
     );
 };
 
+// Modifier une Thing à partir de son identifiant et des données fournies dans la requête
 exports.modifyThing = (req, res, next) => {
     const thing = new Thing({
         _id: req.params.id,
@@ -63,6 +67,7 @@ exports.modifyThing = (req, res, next) => {
     );
 };
 
+// Supprimer une Thing à partir de son identifiant
 exports.deleteThing = (req, res, next) => {
     Thing.deleteOne({ _id: req.params.id }).then(
         () => {
@@ -79,6 +84,7 @@ exports.deleteThing = (req, res, next) => {
     );
 };
 
+// Récupérer toutes les Things
 exports.getAllStuff = (req, res, next) => {
     Thing.find().then(
         (things) => {
