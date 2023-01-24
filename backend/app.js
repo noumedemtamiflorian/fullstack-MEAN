@@ -4,6 +4,7 @@ const Thing = require('./models/thing');
 
 const app = express();
 const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://noumedem:jQRA07xoufw3zNB4@cluster0.9zoopoa.mongodb.net/?retryWrites=true&w=majority',
     {
@@ -24,5 +25,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/stuff', stuffRoutes);
+
 
 module.exports = app;
